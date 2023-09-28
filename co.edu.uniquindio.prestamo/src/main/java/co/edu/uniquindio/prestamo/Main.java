@@ -1,6 +1,7 @@
 package co.edu.uniquindio.prestamo;
 import co.edu.uniquindio.prestamo.model.Cliente;
 import co.edu.uniquindio.prestamo.model.Empleado;
+import co.edu.uniquindio.prestamo.model.Objeto;
 import co.edu.uniquindio.prestamo.model.PrestamoUq;
 
 import java.util.List;
@@ -42,6 +43,23 @@ public class Main {
         eliminarEmpleado(prestamoUq, "Mariana");
         System.out.println("-----> Información luego de eliminar");
         mostraInformacionEmpleado(prestamoUq);
+
+        //Crud objeto
+
+         //Create
+        crearObjeto("Computador", prestamoUq);
+        crearObjeto("Tablet", prestamoUq);
+        crearObjeto("Celular", prestamoUq);
+        crearObjeto("Auriculares", prestamoUq);
+
+        //Read
+        System.out.println("Información objetos: ");
+        mostrarInformacionObjeto(prestamoUq);
+
+        //Delate
+        eliminarObjeto(prestamoUq, "Celular");
+        System.out.println("-----> Información luego de eliminar");
+        mostrarInformacionObjeto(prestamoUq);
     }
 
     private static void crearEmpleado(String nombre,
@@ -96,4 +114,26 @@ public class Main {
     private static void eliminarEmpleado(PrestamoUq prestamoUq, String nombre) {
         prestamoUq.eliminarEmpleado(nombre);
     }
+
+    private static void crearObjeto(String nombre, PrestamoUq prestamoUq) {
+
+        prestamoUq.crearObjeto(nombre);
+    }
+
+    private static void mostrarInformacionObjeto(PrestamoUq prestamoUq) {
+
+        List<Objeto> listaObjetos = prestamoUq.obtenerObjetos();
+        int tamanoLista = listaObjetos.size();
+        for (int i=0; i < tamanoLista; i++){
+            Objeto objeto = listaObjetos.get(i);
+            System.out.println(objeto.toString());
+        }
+    }
+
+    private static void eliminarObjeto(PrestamoUq prestamoUq, String nombre) {
+
+        prestamoUq.eliminarObjeto(nombre);
+    }
+
+
 }

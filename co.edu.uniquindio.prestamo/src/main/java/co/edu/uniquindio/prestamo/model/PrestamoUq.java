@@ -8,6 +8,7 @@ public class PrestamoUq {
 
     List<Cliente> listaClientes = new ArrayList<>();
     List<Empleado> listaEmpleados = new ArrayList<>();
+    List<Objeto> listObjetos = new ArrayList<>();
 
     public PrestamoUq() {
     }
@@ -38,6 +39,14 @@ public class PrestamoUq {
 
     public void setListaEmpleados(List<Empleado> listaEmpleados) {
         this.listaEmpleados = listaEmpleados;
+    }
+
+    public List<Objeto> getListObjetos() {
+        return listObjetos;
+    }
+
+    public void setListObjetos(List<Objeto> listObjetos) {
+        this.listObjetos = listObjetos;
     }
 
     /**
@@ -126,11 +135,42 @@ public class PrestamoUq {
         }
     }
 
+    /**
+     * Metodo para crear un objeto
+     * @param nombre
+     * @return boolean
+     */
+
+    public boolean crearObjeto(String nombre){
+        Objeto objeto = new Objeto();
+        objeto.setNombre(nombre);
+        getListObjetos().add(objeto);
+        return true;
+    }
+
+    public List<Objeto> obtenerObjetos() {
+        return getListObjetos();
+    }
+
+    /**
+     * Metodo para eliminar un objeto
+     * @param nombre
+     */
+    public void eliminarObjeto(String nombre) {
+        int tamanoLista = getListObjetos().size();
+        for (int i =0; i < tamanoLista; i++){
+            Objeto objeto = getListObjetos().get(i);
+            if (objeto.getNombre().equalsIgnoreCase(nombre)){
+                getListObjetos().remove(i);
+                break;
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return "prestamoUq{" +
                 "nombre='" + nombre + '\'' +
                 '}';
     }
-
 }
