@@ -141,8 +141,9 @@ public class PrestamoUq {
      * @return boolean
      */
 
-    public boolean crearObjeto(String nombre){
+    public boolean crearObjeto(String id, String nombre){
         Objeto objeto = new Objeto();
+        objeto.setId(id);
         objeto.setNombre(nombre);
         getListObjetos().add(objeto);
         return true;
@@ -167,10 +168,39 @@ public class PrestamoUq {
         }
     }
 
+    public void actualizarObjeto(String id, String nuevoNombre){
+
+        int tamanoLista = listObjetos.size();
+
+        for (Objeto objeto : listObjetos ){
+            if (objeto.getId().equals(id)){
+                objeto.setNombre(nuevoNombre);
+                System.out.println("Informacion objeto: "+ objeto);
+
+            }
+
+
+        }
+    }
+
+
     @Override
     public String toString() {
         return "prestamoUq{" +
                 "nombre='" + nombre + '\'' +
                 '}';
+    }
+
+
+    public int devolverPosicionEstudiante(String id) {
+        int posicion = -1;
+        boolean bandera = false;
+        for(int i = 0; i < listaEmpleados.size() && bandera == false; i++) {
+            if(listaEmpleados.get(i).getCedula().equalsIgnoreCase(id)) {
+                bandera = true;
+                posicion = i;
+            }
+        }
+        return posicion;
     }
 }

@@ -3,6 +3,7 @@ import co.edu.uniquindio.prestamo.model.Cliente;
 import co.edu.uniquindio.prestamo.model.Empleado;
 import co.edu.uniquindio.prestamo.model.Objeto;
 import co.edu.uniquindio.prestamo.model.PrestamoUq;
+import co.edu.uniquindio.prestamo.util.CapturaDatosUtil;
 
 import java.util.List;
 
@@ -47,10 +48,10 @@ public class Main {
         //Crud objeto
 
          //Create
-        crearObjeto("Computador", prestamoUq);
-        crearObjeto("Tablet", prestamoUq);
-        crearObjeto("Celular", prestamoUq);
-        crearObjeto("Auriculares", prestamoUq);
+        crearObjeto("Computador","1094", prestamoUq);
+        crearObjeto("Tablet","1040", prestamoUq);
+        crearObjeto("Celular","1022", prestamoUq);
+        crearObjeto("Auriculares", "1098",prestamoUq);
 
         //Read
         System.out.println("Información objetos: ");
@@ -60,6 +61,9 @@ public class Main {
         eliminarObjeto(prestamoUq, "Celular");
         System.out.println("-----> Información luego de eliminar");
         mostrarInformacionObjeto(prestamoUq);
+
+        //Update
+        actualizarObjeto("1094","Computador Portail", prestamoUq);
     }
 
     private static void crearEmpleado(String nombre,
@@ -115,9 +119,13 @@ public class Main {
         prestamoUq.eliminarEmpleado(nombre);
     }
 
-    private static void crearObjeto(String nombre, PrestamoUq prestamoUq) {
+    private static void crearObjeto(String nombre,String id, PrestamoUq prestamoUq) {
 
-        prestamoUq.crearObjeto(nombre);
+        prestamoUq.crearObjeto(id, nombre);
+    }
+
+    private static void actualizarObjeto(String id, String nombreNuevo, PrestamoUq prestamoUq) {
+        prestamoUq.actualizarObjeto(id, nombreNuevo);
     }
 
     private static void mostrarInformacionObjeto(PrestamoUq prestamoUq) {

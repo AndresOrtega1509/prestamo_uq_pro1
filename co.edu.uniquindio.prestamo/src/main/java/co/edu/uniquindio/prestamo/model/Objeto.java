@@ -2,13 +2,15 @@ package co.edu.uniquindio.prestamo.model;
 
 public class Objeto {
     private String nombre;
+    private String id;
     PrestamoUq ownedByPrestamoUq;
 
     public Objeto() {
     }
 
-    public Objeto(String nombre) {
+    public Objeto(String nombre, String id) {
         this.nombre = nombre;
+        this.id = id;
     }
 
     public String getNombre() {
@@ -23,6 +25,14 @@ public class Objeto {
         return ownedByPrestamoUq;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public void setOwnedByPrestamoUq(PrestamoUq ownedByPrestamoUq) {
         this.ownedByPrestamoUq = ownedByPrestamoUq;
     }
@@ -30,7 +40,7 @@ public class Objeto {
     @Override
     public String toString() {
         return "Objeto{" +
-                "nombre='" + nombre + '\'' +
-                '}';
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\''+'}';
     }
 }
