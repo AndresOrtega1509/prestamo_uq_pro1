@@ -40,7 +40,8 @@ public class Objeto {
     @Override
     public String toString() {
         return "Objeto{" +
-                "id='" + id + '\'' +
-                ", nombre='" + nombre + '\''+'}';
+                "nombre='" + nombre + '\'' +
+                ", id='" + id + '\'' +
+                '}';
     }
 }

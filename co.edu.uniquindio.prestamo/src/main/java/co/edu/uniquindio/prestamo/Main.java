@@ -3,8 +3,6 @@ import co.edu.uniquindio.prestamo.model.Cliente;
 import co.edu.uniquindio.prestamo.model.Empleado;
 import co.edu.uniquindio.prestamo.model.Objeto;
 import co.edu.uniquindio.prestamo.model.PrestamoUq;
-import co.edu.uniquindio.prestamo.util.CapturaDatosUtil;
-
 import java.util.List;
 
 public class Main {
@@ -13,7 +11,7 @@ public class Main {
 
         //Crud cliente
 
-         //Create
+        //Create
         crearCliente("Juan", "Sanchez", "1087653421", 34, prestamoUq);
         crearCliente("Maria", "Rodriguez", "1034543343", 23, prestamoUq);
         crearCliente("Santiago", "Perez", "1016745323", 15, prestamoUq);
@@ -24,13 +22,18 @@ public class Main {
         mostrarInformacionCliente(prestamoUq);
 
         //Delate
-        eliminarCliente(prestamoUq, "1016745323");
+        eliminarCliente("1016745323", prestamoUq);
         System.out.println("-----> Información luego de eliminar");
+        mostrarInformacionCliente(prestamoUq);
+
+        //Update
+        actualizarCliente("1087653421", "Andres", "Ortega", 20, prestamoUq);
+        System.out.println("-----> Informacion luego de actualizar: ");
         mostrarInformacionCliente(prestamoUq);
 
         //Crud empleado
 
-         //Create
+        //Create
         crearEmpleado("Sebastian", "Calderon", "1096493875", 25, prestamoUq);
         crearEmpleado("Duvan", "Ceron", "1093983821", 31, prestamoUq);
         crearEmpleado("Monica", "Carvajal", "1016870947", 29, prestamoUq);
@@ -41,13 +44,18 @@ public class Main {
         mostraInformacionEmpleado(prestamoUq);
 
         //Delate
-        eliminarEmpleado(prestamoUq, "Mariana");
+        eliminarEmpleado("1082748329", prestamoUq);
         System.out.println("-----> Información luego de eliminar");
+        mostraInformacionEmpleado(prestamoUq);
+
+        //Update
+        actualizarEmpleado("1096493875", "Arturo", "Ortiz", 34, prestamoUq);
+        System.out.println("-----> Informacion luego de actualizar: ");
         mostraInformacionEmpleado(prestamoUq);
 
         //Crud objeto
 
-         //Create
+        //Create
         crearObjeto("Computador","1094", prestamoUq);
         crearObjeto("Tablet","1040", prestamoUq);
         crearObjeto("Celular","1022", prestamoUq);
@@ -58,12 +66,21 @@ public class Main {
         mostrarInformacionObjeto(prestamoUq);
 
         //Delate
-        eliminarObjeto(prestamoUq, "Celular");
+        eliminarObjeto("1098", prestamoUq);
         System.out.println("-----> Información luego de eliminar");
         mostrarInformacionObjeto(prestamoUq);
 
         //Update
-        actualizarObjeto("1094","Computador Portail", prestamoUq);
+        actualizarObjeto("1094","Reloj digital", prestamoUq);
+        System.out.println("-----> Informacion luego de actualizar: ");
+        mostrarInformacionObjeto(prestamoUq);
+    }
+
+    private static PrestamoUq inicializarDatosPrueba() {
+        PrestamoUq prestamoUq = new PrestamoUq();
+        prestamoUq.setNombre("Prestamo rapido");
+
+        return prestamoUq;
     }
 
     private static void crearEmpleado(String nombre,
@@ -76,15 +93,9 @@ public class Main {
 
     }
 
-    private static void eliminarCliente(PrestamoUq prestamoUq, String cedula) {
-        prestamoUq.eliminarCliente(cedula);
-    }
+    private static void crearObjeto(String nombre,String id, PrestamoUq prestamoUq) {
 
-    private static PrestamoUq inicializarDatosPrueba() {
-        PrestamoUq prestamoUq = new PrestamoUq();
-        prestamoUq.setNombre("Prestamo rapido");
-
-        return prestamoUq;
+        prestamoUq.crearObjeto(nombre, id);
     }
 
     private static void crearCliente(String nombre,
@@ -115,19 +126,6 @@ public class Main {
         }
     }
 
-    private static void eliminarEmpleado(PrestamoUq prestamoUq, String nombre) {
-        prestamoUq.eliminarEmpleado(nombre);
-    }
-
-    private static void crearObjeto(String nombre,String id, PrestamoUq prestamoUq) {
-
-        prestamoUq.crearObjeto(id, nombre);
-    }
-
-    private static void actualizarObjeto(String id, String nombreNuevo, PrestamoUq prestamoUq) {
-        prestamoUq.actualizarObjeto(id, nombreNuevo);
-    }
-
     private static void mostrarInformacionObjeto(PrestamoUq prestamoUq) {
 
         List<Objeto> listaObjetos = prestamoUq.obtenerObjetos();
@@ -138,10 +136,29 @@ public class Main {
         }
     }
 
-    private static void eliminarObjeto(PrestamoUq prestamoUq, String nombre) {
-
-        prestamoUq.eliminarObjeto(nombre);
+    private static void eliminarEmpleado(String cedula, PrestamoUq prestamoUq) {
+        prestamoUq.eliminarEmpleado(cedula);
     }
 
+    private static void eliminarObjeto(String id, PrestamoUq prestamoUq) {
+
+        prestamoUq.eliminarObjeto(id);
+    }
+
+    private static void eliminarCliente(String cedula, PrestamoUq prestamoUq) {
+        prestamoUq.eliminarCliente(cedula);
+    }
+
+    private static void actualizarObjeto(String id, String nombreNuevo, PrestamoUq prestamoUq) {
+        prestamoUq.actualizarObjeto(id, nombreNuevo);
+    }
+
+    private static void actualizarCliente(String cedula, String nuevoNombre, String nuevoApellido, int nuevaEdad, PrestamoUq prestamoUq){
+        prestamoUq.actualizarCliente(cedula, nuevoNombre, nuevoApellido, nuevaEdad);
+    }
+
+    private static void actualizarEmpleado(String cedula, String nuevoNombre, String nuevoApellido, int nuevaEdad, PrestamoUq prestamoUq) {
+        prestamoUq.actualizarEmpleado(cedula, nuevoNombre, nuevoApellido,nuevaEdad);
+    }
 
 }
