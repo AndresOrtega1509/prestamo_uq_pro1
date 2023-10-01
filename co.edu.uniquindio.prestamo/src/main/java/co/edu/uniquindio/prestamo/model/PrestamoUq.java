@@ -341,5 +341,4 @@ public class PrestamoUq {
                 "nombre='" + nombre + '\'' +
                 '}';
     }
-
 }

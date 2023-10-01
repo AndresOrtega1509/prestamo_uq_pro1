@@ -24,18 +24,18 @@ public class MainMenu {
                     break;
 
                 case 2:
+                    nombre = CapturaDatosUtil.leerStringConsola("Ingrese el nombre del objeto: ");
+                    String id = CapturaDatosUtil.leerStringConsola("Ingrese el Id del objeto");
+                    prestamoUq.crearObjeto(nombre, id);
+
+                    break;
+
+                case 3:
                     nombre = CapturaDatosUtil.leerStringConsola("Ingresa el nombre del cliente: ");
                     apellido = CapturaDatosUtil.leerStringConsola("Ingresa el apellido del cliente: ");
                     cedula = CapturaDatosUtil.leerStringConsola("Ingresa la cedula del cliente: ");
                     edad = CapturaDatosUtil.leerIntConsola("Ingresa la edad del cliente: ");
                     prestamoUq.crearCliente(nombre, apellido, cedula, edad);
-
-                    break;
-
-                case 3:
-                    nombre = CapturaDatosUtil.leerStringConsola("Ingrese el nombre del objeto: ");
-                    String id = CapturaDatosUtil.leerStringConsola("Ingrese el Id del objeto");
-                    prestamoUq.crearObjeto(nombre, id);
 
                     break;
 
@@ -109,8 +109,8 @@ public class MainMenu {
     private static void mostrarMenu() {
         System.out.println("\nMenú de CRUD:");
         System.out.println("1. Crear Empleado");
-        System.out.println("2. Crear Cliente");
-        System.out.println("3. Crear Objeto");
+        System.out.println("2. Crear Objeto");
+        System.out.println("3. Crear Cliente");
         System.out.println("4. Actualizar Empleado");
         System.out.println("5. Actualizar Objeto");
         System.out.println("6. Actualizar Cliente");
